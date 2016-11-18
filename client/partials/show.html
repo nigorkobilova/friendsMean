@@ -1,8 +1,8 @@
 <h1>Show Friend Info</h1>
 <form>
-    First Name: <input type="text" name="firstName" ng-model='friend.firstName' value='friend.firstName'>
-    Last Name: <input type="text" name="lastName" ng-model='friend.lastName' value='friend.lastName'>
-    Birthday: <input type="text" name="birthDate" ng-model='friend.birthDate' >
+    First Name: <input type="text" name="firstName" ng-model='friend.firstName' value='friend.firstName'><br>
+    Last Name: <input type="text" name="lastName" ng-model='friend.lastName' value='friend.lastName'><br>
+    Birthday: <input type="text" name="birthDate" ng-model='friend.birthDate | date' ><br>
 </form>
 <p>
     User added!

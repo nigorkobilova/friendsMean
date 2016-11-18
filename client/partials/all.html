@@ -15,7 +15,7 @@
     <tbody>
       <tr ng-repeat="friend in friends | filter: filterDate(filter_date)">
         <td>{{friend.firstName}} {{friend.lastName}}</td>
-        <td>{{friend.birthDate | date: 'MMM d,yyyy'}}</td>
+        <td>{{friend.birthDate | date: 'MMM d, yyyy'}}</td>
         <td><a href="#/show/{{friend._id}}">Show</a></td>
         <td><a href="#/update/{{friend._id}}">Update</a></td>
         <td><button type="button" ng-click='delete(friend._id)'>Delete</button></td>
