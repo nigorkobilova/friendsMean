@@ -9,6 +9,9 @@ app.controller('editController', ['$scope','friendsFactory', '$routeParams', "$l
    //   console.log($scope.friend);
    // });
 
+
+   console.log('controlled loaded');
+
    $scope.update = function(){
        console.log("INSIDE OF UPDATE", $routeParams.id);
        friendsFactory.update($routeParams.id, $scope.newfriend, function(){
@@ -18,12 +21,19 @@ app.controller('editController', ['$scope','friendsFactory', '$routeParams', "$l
        $location.url('/');
    }
 
-  $scope.show = function(){
-      console.log('INSIDE OF SHOW', $routeParams.id);
-      friendsFactory.show($routeParams.id, $scope.friend, function(){
-         console.log($scope.friend);
-      });
-      $scope.friend={};
-  }
+   friendsFactory.show($routeParams.id, $scope.friend, function(data){
+       console.log(data);
+       $scope.friend = data;
+       $location.url('/');
+   })
+
+
+  // $scope.show = function(){
+  //     console.log('INSIDE OF SHOW', $routeParams.id);
+  //     friendsFactory.show($routeParams.id, $scope.friend, function(){
+  //        console.log($scope.friend);
+  //     });
+  //     $scope.friend={};
+  // }
 
 }]);

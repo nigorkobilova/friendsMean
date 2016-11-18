@@ -1,19 +1,24 @@
 <h1>All Friends</h1>
+<input type="date" placeholder="Filter: by birthday.." ng-model='filter_date'>
+<br>
+<br>
 <table>
     <thead>
         <tr>
             <th style="padding-right: 30px;">Name</th>
+            <th style="padding-right: 30px;">Birthday</th>
             <th style="padding-right: 30px;">Show</th>
             <th style="padding-right: 30px;">Update</th>
             <th style="padding-right: 30px;">Delete</th>
         </tr>
     </thead>
-    <tbody ng-repeat="friend in friends">
-      <tr>
+    <tbody>
+      <tr ng-repeat="friend in friends | filter: filterDate(filter_date)">
         <td>{{friend.firstName}} {{friend.lastName}}</td>
+        <td>{{friend.birthDate | date: 'MMM d,yyyy'}}</td>
         <td><a href="#/show/{{friend._id}}">Show</a></td>
         <td><a href="#/update/{{friend._id}}">Update</a></td>
-        <td><a href="#/delete/{{friend._id}}" ng-click='delete(friend._id)'>Delete</a></td>
+        <td><button type="button" ng-click='delete(friend._id)'>Delete</button></td>
       </tr>
     </tbody>
 </table>

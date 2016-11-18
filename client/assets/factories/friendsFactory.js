@@ -4,11 +4,15 @@ app.factory('friendsFactory', ['$http', function($http) {
   // constructor for our factory
   var friends = [];
   var friend = {};
+  var current_user;
   function FriendsFactory(){
     var _this = this;
     this.create = function(newfriend,callback){
         console.log("IM INSIDE OF FACTORY");
-      $http.post('/friends', newfriend).then(function(returned_data){
+        $http.post('/friends', newfriend).then(function(returned_data){
+        if (returned_data.error){
+            callback(returned_data)
+        }
         if (typeof(callback) == 'function'){
           callback(returned_data.data);
         }
@@ -33,22 +37,32 @@ app.factory('friendsFactory', ['$http', function($http) {
         console.log(id, "recieved from Factory");
         $http.delete('/friends/'+id).then(function(){
             console.log('friend deleted');
+            if (callback && typeof callback == 'function') {
+                callback();
+            }
         })
     };
-    this.show = function(id, callback){
+    this.show = function(id, friend, callback){
         console.log(id, 'received from SHOW in Factory');
         $http.get('/friends/'+id).then(function(returned_data){
-            friends = returned_data.data;
-            callback(friends);
+            friend = returned_data.data;
+            callback(friend);
         })
     };
     // Sometimes you might not want to make a DB call, and just get the information stored in the factory.
     this.getFriends = function(callback){
       callback(friends);
     };
-    this.getFriend = function(callback){
-        callback(friend);
-    };
+
+    this.get_user = function(callback){
+        callback(current_user);
+    }
+
+    this.set_user = function(new_user, callback){
+        current_user = new_user;
+        callback(current_user);
+    }
+
   }
   console.log(new FriendsFactory());
   return new FriendsFactory();

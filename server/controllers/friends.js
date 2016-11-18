@@ -18,6 +18,7 @@ function FriendsController(){
       friend.save(function(err){
           if (err){
               console.log(err);
+              res.json({error: 'error message', err: err})
           } else {
               res.json({placeholder: 'success'})
           }
