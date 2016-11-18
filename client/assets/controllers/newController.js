@@ -9,7 +9,6 @@ app.controller('newController', function($scope, friendsFactory, $location, $rou
    index();
 
    $scope.create = function(){
-       console.log("IM INSIDE OF CONTROLLER");
        friendsFactory.create($scope.newfriend);
        $location.url('/');
        $scope.newfriend={};
@@ -24,7 +23,6 @@ app.controller('newController', function($scope, friendsFactory, $location, $rou
 
    $scope.filterDate = function(filter_date){
        console.log($scope.filter_date);
-
        return $filter('date')(filter_date, 'yyyy-MM-dd');
    }
 

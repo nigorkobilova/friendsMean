@@ -1,7 +1,18 @@
 <h1>Add A New Friend</h1>
-<form ng-submit='create()'>
-    First Name: <input type="text" name="firstName" ng-model='newfriend.firstName'>
-    Last Name: <input type="text" name="lastName" ng-model='newfriend.lastName'>
-    Birthday: <input type="date" name="birthDate" ng-model='newfriend.birthDate'>
-    <input type="submit" value="Create">
+<form ng-submit='create()' name='friendForm'>
+    <p>First Name: <input type="text" name="firstName" ng-model='newfriend.firstName' required>
+
+        <span style="color:red" ng-show="friendForm.firstName.$dirty && friendForm.firstName.$invalid">
+            <span ng-show="friendForm.firstName.$error.required">First Name is required</span></span></p>
+
+    <p>Last Name: <input type="text" name="lastName" ng-model='newfriend.lastName' required>
+
+        <span style="color:red" ng-show="friendForm.lastName.$dirty && friendForm.lastName.$invalid">
+            <span ng-show="friendForm.lastName.$error.required">Last Name is required</span></span></p>
+
+    <p>Birthday: <input type="date" name="birthDate" ng-model='newfriend.birthDate' required>
+        <span style="color:red" ng-show="friendForm.birthDate.$dirty && friendForm.birthDate.$invalid">
+            <span ng-show="friendForm.birthDate.$error.required">Birth Date is required</span></span></p>
+
+    <p><input type="submit" value='Create' ng-disabled="friendForm.firstName.$dirty || friendForm.lastName.$invalid"></p>
 </form>

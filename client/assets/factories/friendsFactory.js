@@ -11,17 +11,17 @@ app.factory('friendsFactory', ['$http', function($http) {
         console.log("IM INSIDE OF FACTORY");
         $http.post('/friends', newfriend).then(function(returned_data){
         if (returned_data.error){
-            callback(returned_data)
+            callback(returned_data);
         }
         if (typeof(callback) == 'function'){
-          callback(returned_data.data);
+            callback(returned_data.data);
         }
       });
     };
     this.update = function(id, newfriend, callback){
         console.log("inside of the factory!!!", id);
-      $http.put('/friends/'+id, newfriend).then(function(returned_data){
-         callback(returned_data.data)
+        $http.put('/friends/'+id, newfriend).then(function(returned_data){
+            callback(returned_data.data)
       })
     };
     this.index = function(callback){
